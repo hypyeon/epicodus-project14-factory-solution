@@ -16,7 +16,7 @@
   @if (Model.Machines.Count == 0)
   {
     <p>No machines assigned yet. </p>
-    <p>Click @Html.ActionLink("here", "Create", "Machines") to add new client for @Html.DisplayFor(model => model.Name).</p>
+    <p>Click @Html.ActionLink("here", "Create", "Machines") to assign new machines for @Html.DisplayFor(model => model.Name).</p>
   } 
   else {
     <h4>Machines: </h4>
