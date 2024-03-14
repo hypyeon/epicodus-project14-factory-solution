@@ -61,7 +61,10 @@ dotnet tool install --global dotnet-ef --version 6.0.0
 dotnet add package Microsoft.EntityFrameworkCore.Design -v 6.0.0
 ```
 6. Run `dotnet ef migrations add [AddEntity]` to create a data migration for the database. *Replace `[AddEntity]` with your own choice. Check out how to name your migration [here](https://learn.microsoft.com/en-us/ef/core/managing-schemas/migrations/managing?tabs=dotnet-core-cli).*
-7. To update the database after making a change, run `dotnet ef database update`. To remove the recent update, run `dotnet ef migrations remove` in the terminal. 
+7. Refer to the following commands when updating, viewing, and deleting migrations. These commands should be made within the production directory. 
+- To update the database after making a change, run `dotnet ef database update` in the terminal. 
+- To remove the recent update, run `dotnet ef migrations remove` in the terminal. 
+- To remove a certain update, run `dotnet ef migrations list` in the terminal to view the history, then run `dotnet ef migrations <MigrationName>` replacing `<MigrationName>` with the actual name. 
 8. To compile and run the application in development mode with a watcher, run `dotnet watch run` which will open the browser automatically - if not - open the browser and navigate to https://localhost:5001. 
 
 ## Known Bugs
