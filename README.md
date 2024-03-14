@@ -33,7 +33,7 @@ by Hayeong Pyeon
 ## Setup Instructions
 1. Make sure you have [MySQL Community Server and Workbench installed](https://full-time.learnhowtoprogram.com/c-and-net/getting-started-with-c/installing-and-configuring-mysql). 
 2. Clone this repo. 
-3. Open your shell (e.g., Terminal or GitBash) and navigate to this project's production directory named **HairSalon**. 
+3. Open your shell (e.g., Terminal or GitBash) and navigate to this project's production directory named **Factory**.    
 ...
 *to be updated*
 
