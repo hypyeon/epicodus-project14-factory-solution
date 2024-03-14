@@ -43,12 +43,22 @@ obj
 bin
 appsettings.json
 ```
-4. Install tools in order to use `dotnet-ef` by running the following commands:
-- Has to be run globally: `dotnet tool install --global dotnet-ef --version 6.0.0`
-- Has to be run under the production directory: `dotnet add package Microsoft.EntityFrameworkCore.Design -v 6.0.0`
-5. Run `dotnet ef migrations add [AddEntity]` to create a data migration for the database. *Replace `[AddEntity]` with your own choice. Check out how to name your migration [here](https://learn.microsoft.com/en-us/ef/core/managing-schemas/migrations/managing?tabs=dotnet-core-cli).*
-6. To update the database after making a change, run `dotnet ef database update`. To remove the recent update, run `dotnet ef migrations remove` in the terminal. 
-7. To compile and run the application in development mode with a watcher, run `dotnet watch run` which will open the browser automatically - if not - open the browser and navigate to https://localhost:5001. 
+4. In the `appsettings.json` file, write the following code, replacing `uid` and the `pwd` values with your own username and password registered for MySQL. 
+```
+{
+  "ConnectionStrings": {
+    "DefaultConnection": "Server=localhost;Port=3306;database=hayeong_pyeon;uid=[YOUR-USERNAME];pwd=[YOUR-PASSWORD];"
+  }
+}
+```
+5. Install tools in order to use `dotnet-ef` by running the following commands:
+- Has to be run globally: 
+```dotnet tool install --global dotnet-ef --version 6.0.0```
+- Has to be run under the production directory: 
+```dotnet add package Microsoft.EntityFrameworkCore.Design -v 6.0.0```
+6. Run `dotnet ef migrations add [AddEntity]` to create a data migration for the database. *Replace `[AddEntity]` with your own choice. Check out how to name your migration [here](https://learn.microsoft.com/en-us/ef/core/managing-schemas/migrations/managing?tabs=dotnet-core-cli).*
+7. To update the database after making a change, run `dotnet ef database update`. To remove the recent update, run `dotnet ef migrations remove` in the terminal. 
+8. To compile and run the application in development mode with a watcher, run `dotnet watch run` which will open the browser automatically - if not - open the browser and navigate to https://localhost:5001. 
 
 ## Known Bugs
 *currently under development as of March 13, 2024*
