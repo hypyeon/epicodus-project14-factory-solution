@@ -25,6 +25,14 @@ namespace Factory.Controllers
 
     public ActionResult Create()
     {
+      var jobTitles = new List<SelectListItem>
+      {
+        new SelectListItem { Value = "Intern", Text = "Intern" },
+        new SelectListItem { Value = "Junior Engineer", Text = "Junior Engineer" },
+        new SelectListItem { Value = "Senior Engineer", Text = "Senior Engineer" },
+        new SelectListItem { Value = "Engineering Lead", Text = "Engineering Lead" }
+      };
+      ViewBag.JobTitles = jobTitles;
       return View();
     }
 
@@ -47,6 +55,14 @@ namespace Factory.Controllers
     public ActionResult Edit(int id)
     {
       Engineer eng = _db.Engineers.FirstOrDefault(e => e.EngineerId == id);
+      var jobTitles = new List<SelectListItem>
+      {
+        new SelectListItem { Value = "Intern", Text = "Intern" },
+        new SelectListItem { Value = "Junior Engineer", Text = "Junior Engineer" },
+        new SelectListItem { Value = "Senior Engineer", Text = "Senior Engineer" },
+        new SelectListItem { Value = "Engineering Lead", Text = "Engineering Lead" }
+      };
+      ViewBag.JobTitles = jobTitles;
       return View(eng);
     }
 

@@ -10,7 +10,7 @@
   <hr />
   <div>
     <h3>@Html.DisplayFor(model => model.Name)</h3>
-    <p>@Html.DisplayFor(model => model.HiredDate)</p>
+    <p>@Html.DisplayFor(model => model.Title) since @Html.DisplayFor(model => model.HiredDate)</p>
   </div>
 
   @if (Model.Machines.Count == 0)

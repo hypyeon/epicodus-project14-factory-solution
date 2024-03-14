@@ -22,6 +22,10 @@
           @Html.EditorFor(model => model.Name)
         </div>
         <div>
+          @Html.LabelFor(model => model.Title, "Job Title: ")
+          @Html.DropDownListFor(model => model.Title, ViewBag.JobTitles as List<SelectListItem>)
+        </div>
+        <div>
           @Html.LabelFor(model => model.HiredDate, "Joined since: ")
           @Html.EditorFor(model => model.HiredDate, new { type = "date" })
         </div>
