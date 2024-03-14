@@ -1,0 +1,17 @@
+@{
+  Layout = "_Layout";
+}
+
+@model Factory.Models.Machine
+
+<h3>Please confirm that you are removing @Html.DisplayFor(model => model.Name) from your factory.</h3>
+
+<div>
+  @using (Html.BeginForm())
+  {
+    <input type="submit" value="Confirm and Remove" />
+  }
+  <div class="buttons">
+    <p>@Html.ActionLink("Back to Machine List", "Index")</p>
+  </div>
+</div>

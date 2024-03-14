@@ -1,0 +1,33 @@
+@{
+  Layout = "_Layout";
+}
+
+@model Factory.Models.Machine
+
+<div>
+  <h2>Register New Machine</h2>
+  <div class="form">
+    @using (Html.BeginForm())
+    {
+      <div class="form-div">
+        <div>
+          @Html.LabelFor(model => model.Name, "Name: ")
+          @Html.TextBoxFor(model => model.Name)
+        </div>
+        <div>
+          @Html.LabelFor(model => model.Difficulty, "Difficulty: ")
+          @Html.DropDownListFor(model => model.Difficulty, ViewBag.Difficulties as List<SelectListItem>)
+        </div>
+        <div>
+          @Html.LabelFor(model => model.Engineer, "Engineers assigned: ")
+          @Html.DropDownList("EngineerId")
+        </div>
+      </div>
+      <input type="submit" value="Register" />
+    }
+  </div>
+  <div class="buttons">
+    <p>@Html.ActionLink("Back to Machine List", "Index")</p>
+    <p>@Html.ActionLink("Main Page", "Index", "Home")</p>
+  </div>
+</div>
