@@ -1,0 +1,34 @@
+@{
+  Layout = "_Layout";
+}
+
+@model Factory.Models.Engineer
+@using Factory.Models
+
+<div>
+  <h2>Engineer Information</h2>
+  <hr />
+  <div>
+    <h3>@Html.DisplayFor(model => model.Name)</h3>
+    <p>@Html.DisplayFor(model => model.HiredDate)</p>
+  </div>
+
+  @if (Model.Machines.Count == 0)
+  {
+    <p>No machines assigned yet. </p>
+    <p>Click @Html.ActionLink("here", "Create", "Machines") to add new client for @Html.DisplayFor(model => model.Name).</p>
+  } 
+  else {
+    <h4>Machines: </h4>
+    @foreach(Machine machine in Model.Machines)
+    {
+      <div>@Html.ActionLink($"{machine.Name}", "Details", "Clients", new { id = machine.MachineId })</div>
+    }
+  }
+  <div class="buttons">
+    <p>@Html.ActionLink("Edit Info", "Edit", new { id = Model.EngineerId })</p>
+    <p>@Html.ActionLink("Unregister this Engineer", "Delete", new { id = Model.EngineerId })</p>
+    <p>@Html.ActionLink("View Engineer List", "Index")</p>
+  </div>
+</div>
+

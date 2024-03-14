@@ -1,0 +1,30 @@
+@{
+  Layout = "_Layout";
+}
+
+@model Factory.Models.Engineer
+@using Factory.Models
+
+<div>
+  <h2>Register New Engineer</h2>
+  <div class="form">
+    @using (Html.BeginForm())
+    {
+      <div class="form-div">
+        <div>
+          @Html.LabelFor(model => model.Name, "Name: ")
+          @Html.TextBoxFor(model => model.Name)
+        </div>
+        <div>
+          @Html.LabelFor(model => model.HiredDate, "Joined since: ")
+          @Html.TextBoxFor(model => model.HiredDate, new { type = "date" })
+        </div>
+      </div>
+      <input type="submit" value="Register" />
+    }
+  </div>
+  <div class="buttons">
+    <p>@Html.ActionLink("Back to Engineer List", "Index")</p>
+    <p>@Html.ActionLink("Main Page", "Index", "Home")</p>
+  </div>
+</div>

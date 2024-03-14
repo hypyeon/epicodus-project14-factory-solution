@@ -1,0 +1,38 @@
+@{
+  Layout = "_Layout";
+}
+
+@model Factory.Models.Engineer
+
+<div>
+  <h2>Edit Engineer Info</h2>
+  <hr />
+
+  <h4>Current Information:</h4>
+  <p>@Html.DisplayFor(model => model.Name) | Hired Date: @Html.DisplayFor(model => model.HiredDate)</p>
+
+  <div class="form">
+    <h4>Update Info here: </h4>
+    @using (Html.BeginForm())
+    {
+      <div class="form-div">
+        @Html.HiddenFor(model => model.EngineerId)
+        <div>
+          @Html.LabelFor(model => model.Name, "Name: ")
+          @Html.EditorFor(model => model.Name)
+        </div>
+        <div>
+          @Html.LabelFor(model => model.HiredDate, "Joined since: ")
+          @Html.EditorFor(model => model.HiredDate, new { type = "date" })
+        </div>
+      </div>
+      <input type="submit" value="Update" />
+    }
+
+  </div>
+  <div class="buttons">
+    <p>@Html.ActionLink($"Back to {Model.Name}'s Info", "Details", new { id = Model.EngineerId })</p>
+    <p>@Html.ActionLink("Back to Engineer List", "Index")</p>
+  </div>
+</div>
+
