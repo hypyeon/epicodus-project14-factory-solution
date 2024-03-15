@@ -96,5 +96,33 @@ namespace Factory.Controllers
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
+
+    public ActionResult AddLicense(int id)
+    {
+      Engineer engineer = _db.Engineers.FirstOrDefault(en => en.EngineerId == id);
+      ViewBag.LisenseId = new SelectList(_db.Licenses, "LicenseId", "Title");
+      return View(engineer);
+    }
+
+    [HttpPost]
+    public ActionResult AddLicense(Engineer en, int licenseId)
+    {
+      #nullable enable
+      EngineerLicense? joinEntity = _db.EngineerLicenses
+        .FirstOrDefault(join => 
+          (join.LicenseId == licenseId && join.EngineerId == en.EngineerId)
+        );
+      #nullable disable
+      if (joinEntity == null && licenseId != 0)
+      {
+        _db.EngineerLicenses.Add(
+          new EngineerLicense() {
+            LicenseId = licenseId, EngineerId = en.EngineerId
+          }
+        );
+        _db.SaveChanges();
+      }
+      return RedirectToAction("Details", new { id = en.EngineerId });
+    }
   }
 }

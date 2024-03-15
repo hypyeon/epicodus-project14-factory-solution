@@ -26,6 +26,7 @@
     }
   }
   <div class="buttons">
+    <p>@Html.ActionLink("Add a License", "AddLicense", new { id = Model.EngineerId })</p>
     <p>@Html.ActionLink("Edit Engineer or Machine", "Edit", new { id = Model.EngineerId })</p>
     <p>@Html.ActionLink("Unregister this Engineer", "Delete", new { id = Model.EngineerId })</p>
     <p>@Html.ActionLink("Back to Engineer List", "Index")</p>
