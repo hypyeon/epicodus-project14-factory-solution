@@ -21,7 +21,7 @@
           @Html.DropDownListFor(model => model.Title, ViewBag.JobTitles as List<SelectListItem>)
         </div>
         <div>
-          @Html.LabelFor(model => model.HiredDate, "Joined since: ")
+          @Html.LabelFor(model => model.HiredDate, "Hired Date: ")
           @Html.TextBoxFor(model => model.HiredDate, new { type = "date" })
         </div>
       </div>

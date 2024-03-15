@@ -21,15 +21,15 @@
           @Html.EditorFor(model => model.Name)
         </div>
         <div>
-          @Html.LabelFor(model => model.Difficulty, "Phone: ")
-          @Html.EditorFor(model => model.Difficulty)
+          @Html.LabelFor(model => model.Difficulty, "Difficulty: ")
+          @Html.DropDownListFor(model => model.Difficulty, ViewBag.Difficulties as List<SelectListItem>)
         </div>
       </div>
       <input type="submit" value="Update" />
     }
   </div>
   <div class="buttons">
-    <p>@Html.ActionLink($"Back to {Model.Name}'s Info", "Details", new { id = Model.MachineId })</p>
+    <p>@Html.ActionLink("Back to Details", "Details", new { id = Model.MachineId })</p>
     <p>@Html.ActionLink("Back to Engineer List", "Index")</p>
   </div>
 </div>
