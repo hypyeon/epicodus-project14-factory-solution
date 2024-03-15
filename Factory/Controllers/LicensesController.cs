@@ -84,5 +84,20 @@ namespace Factory.Controllers
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
+
+    public ActionResult Delete(int id)
+    {
+      License license = _db.Licenses.FirstOrDefault(li => li.LicenseId == id);
+      return View(license);
+    }
+
+    [HttpPost, ActionName("Delete")]
+    public ActionResult DeleteCompleted(int id)
+    {
+      License license = _db.Licenses.FirstOrDefault(li => li.LicenseId == id);
+      _db.Licenses.Remove(license);
+      _db.SaveChanges();
+      return RedirectToAction("Index");
+    }
   }
 }
