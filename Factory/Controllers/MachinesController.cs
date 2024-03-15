@@ -50,6 +50,8 @@ namespace Factory.Controllers
     {
       Machine mac = _db.Machines
         .Include(m => m.Engineer)
+        .ThenInclude(en => en.JoinEntities)
+        .ThenInclude(join => join.License)
         .FirstOrDefault(m => m.MachineId == id);
       return View(mac);
     }
