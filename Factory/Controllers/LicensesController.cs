@@ -70,5 +70,19 @@ namespace Factory.Controllers
       }
       return RedirectToAction("Details", new { id = li.LicenseId });
     }
+
+    public ActionResult Edit(int id)
+    {
+      License license = _db.Licenses.FirstOrDefault(li => li.LicenseId == id);
+      return View(license);
+    }
+
+    [HttpPost]
+    public ActionResult Edit(License li)
+    {
+      _db.Licenses.Update(li);
+      _db.SaveChanges();
+      return RedirectToAction("Index");
+    }
   }
 }
