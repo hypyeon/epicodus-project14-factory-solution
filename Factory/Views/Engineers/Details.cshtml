@@ -18,7 +18,7 @@
     <p>Click @Html.ActionLink("here", "AddMachine", new { id = Model.EngineerId }) to assign new machines for @Html.DisplayFor(model => model.Name).</p>
   } 
   else {
-    <h4>Machines licensed to repair: </h4>
+    <h4>Machines assigned: </h4>
     @foreach(EngineerMachine join in Model.AssignedMachines)
     {
       <div>@Html.ActionLink($"{join.Machine.Name}", "Details", "Machines", new { id = join.Machine.MachineId })</div>

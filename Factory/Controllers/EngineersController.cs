@@ -40,16 +40,15 @@ namespace Factory.Controllers
     [HttpPost]
     public ActionResult Create(Engineer en)
     {
-     if (!ModelState.IsValid)
-     {
-      ViewBag.MachineId = new SelectList(_db.Machines, "MachineId", "Name");
-      return View(en);
-     }
-     else {
-      _db.Engineers.Add(en);
-      _db.SaveChanges();
-      return RedirectToAction("Details", new { id = en.EngineerId });
-     }
+      if (!ModelState.IsValid)
+      {
+        return View(en);
+      }
+      else {
+        _db.Engineers.Add(en);
+        _db.SaveChanges();
+        return RedirectToAction("Details", new { id = en.EngineerId });
+      }
     }
 
     public ActionResult Details(int id)

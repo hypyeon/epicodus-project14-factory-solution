@@ -9,13 +9,13 @@
   <h2>Machine Information</h2>
   <hr />
   <div>
-    <h3>@Html.DisplayFor(model => model.Name)</h3>
+    <p>@Html.DisplayFor(model => model.Name) | @Html.DisplayFor(model => model.Difficulty)</p>
   </div>
 
   @if (Model.AssignedEngineers.Count == 0)
   {
     <p>No engineers assigned to this machine yet. </p>
-    <p>Click @Html.ActionLink("here", "Create", "Engineers") to assign new engineers for @Html.DisplayFor(model => model.Name).</p>
+    <p>Click @Html.ActionLink("here", "AddEngineer") to assign new engineers licensed to repair @Html.DisplayFor(model => model.Name).</p>
   } 
   else {
     <h4>Licensed engineers: </h4>
@@ -25,7 +25,7 @@
     }
   }
   <div class="buttons">
-    <p>@Html.ActionLink("Add a License", "AddLicense", new { id = Model.MachineId })</p>
+    <p>@Html.ActionLink("Add new Engineers", "Create", "Engineers")</p>
     <p>@Html.ActionLink("Edit Engineer or Machine", "Edit", new { id = Model.MachineId })</p>
     <p>@Html.ActionLink("Unregister this Engineer", "Delete", new { id = Model.MachineId })</p>
     <p>@Html.ActionLink("Back to Engineer List", "Index")</p>

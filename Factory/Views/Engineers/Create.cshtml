@@ -8,6 +8,7 @@
 <div>
   <h2>Register New Engineer</h2>
   <p>@Html.ValidationMessageFor(model => model.Name, "")</p>
+  <p>@Html.ValidationMessageFor(model => model.HiredDate, "")</p>
   <div class="form">
     @using (Html.BeginForm())
     {

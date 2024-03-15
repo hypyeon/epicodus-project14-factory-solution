@@ -6,13 +6,13 @@
 
 <div>
   <h2>Machine Assignment</h2>
-  <p>Assign a new machine to @Html.DisplayFor(model => model.Name)</p>
+  <p>Assign a new machine for @Html.DisplayFor(model => model.Name).</p>
   <div class="form">
     @using (Html.BeginForm())
     {
       <div class="form-div">
         @Html.HiddenFor(model => model.EngineerId)
-        @Html.Label("Select a Machine")
+        @Html.Label("Select a Machine: ")
         @Html.DropDownList("MachineId")
       </div>
       <input type="submit" value="Assign" />
