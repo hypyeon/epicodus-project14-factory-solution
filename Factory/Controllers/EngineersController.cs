@@ -33,30 +33,37 @@ namespace Factory.Controllers
         new SelectListItem { Value = "Engineering Lead", Text = "Engineering Lead" }
       };
       ViewBag.JobTitles = jobTitles;
+      ViewBag.MachineId = new SelectList(_db.Machines, "MachineId", "Name");
       return View();
     }
 
     [HttpPost]
-    public ActionResult Create(Engineer eng)
+    public ActionResult Create(Engineer en)
     {
-      _db.Engineers.Add(eng);
+     if (!ModelState.IsValid)
+     {
+      ViewBag.MachineId = new SelectList(_db.Machines, "MachineId", "Name");
+      return View(en);
+     }
+     else {
+      _db.Engineers.Add(en);
       _db.SaveChanges();
-      return RedirectToAction("Index");
+      return RedirectToAction("Details", new { id = en.EngineerId });
+     }
     }
 
     public ActionResult Details(int id)
     {
-      Engineer eng = _db.Engineers
-        .Include(e => e.Machines)
-        .Include(e => e.JoinEntities)
-        .ThenInclude(join => join.License)
-        .FirstOrDefault(e => e.EngineerId == id);
-      return View(eng);
+      Engineer engineer = _db.Engineers
+        .Include(en => en.AssignedMachines)
+        .ThenInclude(join => join.Machine)
+        .FirstOrDefault(en => en.EngineerId == id);
+      return View(engineer);
     }
 
     public ActionResult Edit(int id)
     {
-      Engineer eng = _db.Engineers.FirstOrDefault(e => e.EngineerId == id);
+      Engineer engineer = _db.Engineers.FirstOrDefault(en => en.EngineerId == id);
       var jobTitles = new List<SelectListItem>
       {
         new SelectListItem { Value = "Intern", Text = "Intern" },
@@ -65,59 +72,55 @@ namespace Factory.Controllers
         new SelectListItem { Value = "Engineering Lead", Text = "Engineering Lead" }
       };
       ViewBag.JobTitles = jobTitles;
-      return View(eng);
+      return View(engineer);
     }
 
     [HttpPost]
-    public ActionResult Edit(Engineer eng)
+    public ActionResult Edit(Engineer en)
     {
-      _db.Engineers.Update(eng);
+      _db.Engineers.Update(en);
       _db.SaveChanges();
-      return RedirectToAction("Details", new { id = eng.EngineerId });
+      return RedirectToAction("Details", new { id = en.EngineerId });
     }
 
     public ActionResult Delete(int id)
     {
-      Engineer eng = _db.Engineers
-        .FirstOrDefault(e => e.EngineerId == id);
-      if (eng == null)
-      {
-        return NotFound();
-      }
-      return View(eng);
+      Engineer engineer = _db.Engineers
+        .FirstOrDefault(en => en.EngineerId == id);
+      return View(engineer);
     }
 
     [HttpPost, ActionName("Delete")]
     public ActionResult DeleteCompleted(int id)
     {
-      Engineer eng = _db.Engineers
-        .FirstOrDefault(e => e.EngineerId == id);
-      _db.Engineers.Remove(eng);
+      Engineer engineer = _db.Engineers
+        .FirstOrDefault(en => en.EngineerId == id);
+      _db.Engineers.Remove(engineer);
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
 
-    public ActionResult AddLicense(int id)
+    public ActionResult AddMachine(int id)
     {
       Engineer engineer = _db.Engineers.FirstOrDefault(en => en.EngineerId == id);
-      ViewBag.LisenseId = new SelectList(_db.Licenses, "LicenseId", "Title");
+      ViewBag.MachineId = new SelectList(_db.Machines, "MachineId", "Name");
       return View(engineer);
     }
 
     [HttpPost]
-    public ActionResult AddLicense(Engineer en, int licenseId)
+    public ActionResult AddMachine(Engineer en, int macId)
     {
       #nullable enable
-      EngineerLicense? joinEntity = _db.EngineerLicenses
+      EngineerMachine? joinEntity = _db.EngineerMachines
         .FirstOrDefault(join => 
-          (join.LicenseId == licenseId && join.EngineerId == en.EngineerId)
+          (join.MachineId == macId && join.EngineerId == en.EngineerId)
         );
       #nullable disable
-      if (joinEntity == null && licenseId != 0)
+      if (joinEntity == null && macId != 0)
       {
-        _db.EngineerLicenses.Add(
-          new EngineerLicense() {
-            LicenseId = licenseId, EngineerId = en.EngineerId
+        _db.EngineerMachines.Add(
+          new EngineerMachine() {
+            MachineId = macId, EngineerId = en.EngineerId
           }
         );
         _db.SaveChanges();

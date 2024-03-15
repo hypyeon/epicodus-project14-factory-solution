@@ -13,16 +13,16 @@
     <p>@Html.DisplayFor(model => model.Title) since @Html.DisplayFor(model => model.HiredDate)</p>
   </div>
 
-  @if (Model.Machines.Count == 0)
+  @if (Model.AssignedMachines.Count == 0)
   {
     <p>No machines assigned yet. </p>
     <p>Click @Html.ActionLink("here", "Create", "Machines") to assign new machines for @Html.DisplayFor(model => model.Name).</p>
   } 
   else {
-    <h4>Machines: </h4>
-    @foreach(Machine machine in Model.Machines)
+    <h4>Machines licensed to repair: </h4>
+    @foreach(EngineerMachine join in Model.AssignedMachines)
     {
-      <div>@Html.ActionLink($"{machine.Name}", "Details", "Clients", new { id = machine.MachineId })</div>
+      <div>@Html.ActionLink($"{join.Machine.Name}", "Details", "Machines", new { id = join.Machine.MachineId })</div>
     }
   }
   <div class="buttons">

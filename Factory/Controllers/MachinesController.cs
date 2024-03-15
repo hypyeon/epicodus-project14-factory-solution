@@ -37,29 +37,23 @@ namespace Factory.Controllers
     [HttpPost]
     public ActionResult Create(Machine mac)
     {
-      if (mac.EngineerId == 0)
-      {
-        return RedirectToAction("Create");
-      }
       _db.Machines.Add(mac);
       _db.SaveChanges();
-      return RedirectToAction("Index");
+      return RedirectToAction("Details", new { id = mac.MachineId });
     }
 
     public ActionResult Details(int id)
     {
-      Machine mac = _db.Machines
-        .Include(m => m.Engineer)
-        .ThenInclude(en => en.JoinEntities)
-        .ThenInclude(join => join.License)
+      Machine machine = _db.Machines
+        .Include(mac => mac.AssignedEngineers)
+        .ThenInclude(join => join.Engineer)
         .FirstOrDefault(m => m.MachineId == id);
-      return View(mac);
+      return View(machine);
     }
 
     public ActionResult Edit(int id)
     {
-      Machine mac = _db.Machines
-        .FirstOrDefault(m => m.MachineId == id);
+      Machine machine = _db.Machines.FirstOrDefault(mac => mac.MachineId == id);
       ViewBag.EngineerId = new SelectList(_db.Engineers, "EngineerId", "Name");
       var difficulties = new List<SelectListItem>
       {
@@ -68,7 +62,7 @@ namespace Factory.Controllers
         new SelectListItem { Value = "Advanced", Text = "Advanced" }
       };
       ViewBag.Difficulties = difficulties;
-      return View(mac);
+      return View(machine);
     }
 
     [HttpPost]
@@ -81,17 +75,17 @@ namespace Factory.Controllers
 
     public ActionResult Delete(int id)
     {
-      Machine mac = _db.Machines
-        .FirstOrDefault(m => m.MachineId == id);
-      return View(mac);
+      Machine machine = _db.Machines
+        .FirstOrDefault(mac => mac.MachineId == id);
+      return View(machine);
     }
 
     [HttpPost, ActionName("Delete")]
     public ActionResult DeleteCompleted(int id)
     {
-      Machine mac = _db.Machines
-        .FirstOrDefault(m => m.MachineId == id);
-      _db.Machines.Remove(mac);
+      Machine machine = _db.Machines
+        .FirstOrDefault(mac => mac.MachineId == id);
+      _db.Machines.Remove(machine);
       _db.SaveChanges();
       return RedirectToAction("Index");
     }

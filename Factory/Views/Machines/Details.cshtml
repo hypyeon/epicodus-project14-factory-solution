@@ -4,46 +4,31 @@
 
 @model Factory.Models.Machine
 @using Factory.Models
-@using System.Collections.Generic
 
 <div>
   <h2>Machine Information</h2>
   <hr />
   <div>
     <h3>@Html.DisplayFor(model => model.Name)</h3>
-    @if (@Model.Engineers.Count == 0)
-    {
-      <p>This machine has not been assigned to any engineer.</p>
-    }
-    else
-    {
-      <h4>Machines that are assigned to engineers:</h4>
-      <ul>
-        @foreach (Engineer en in Model.Engineers)
-        {
-          string license = "";
-          @if (en.JoinEntities.Count == 0)
-          {
-            license = "This engineer does not have any license.";
-          }
-          else 
-          {
-            List<string> licenseList = new List<string> ();
-            @foreach (EngineerLicense join in en.JoinEntities)
-            {
-              licenseList.Add(join.License.Title);
-            }
-            license = String.Join(", ", licenseList);
-          }
-          <li>@en.Name | Licenses: @license</li>
-        }
-      </ul>
-    }
   </div>
+
+  @if (Model.AssignedEngineers.Count == 0)
+  {
+    <p>No engineers assigned to this machine yet. </p>
+    <p>Click @Html.ActionLink("here", "Create", "Engineers") to assign new engineers for @Html.DisplayFor(model => model.Name).</p>
+  } 
+  else {
+    <h4>Licensed engineers: </h4>
+    @foreach(EngineerMachine join in Model.AssignedEngineers)
+    {
+      <div>@Html.ActionLink($"{join.Engineer.Name}", "Details", "Engineers", new { id = join.Engineer.EngineerId })</div>
+    }
+  }
   <div class="buttons">
-    <p>@Html.ActionLink("Edit Info", "Edit", new { id = Model.MachineId })</p>
-    <p>@Html.ActionLink("Remove this Machine", "Delete", new { id = Model.MachineId })</p>
-    <p>@Html.ActionLink("Back to Machine List", "Index")</p>
-    <p>@Html.ActionLink("Add new Machine", "Create", "Machines")</p>
+    <p>@Html.ActionLink("Add a License", "AddLicense", new { id = Model.MachineId })</p>
+    <p>@Html.ActionLink("Edit Engineer or Machine", "Edit", new { id = Model.MachineId })</p>
+    <p>@Html.ActionLink("Unregister this Engineer", "Delete", new { id = Model.MachineId })</p>
+    <p>@Html.ActionLink("Back to Engineer List", "Index")</p>
   </div>
 </div>
+

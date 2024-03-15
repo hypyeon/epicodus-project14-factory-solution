@@ -28,6 +28,7 @@ namespace Factory.Migrations
                         .HasColumnType("longtext");
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("Title")
@@ -38,39 +39,25 @@ namespace Factory.Migrations
                     b.ToTable("Engineers");
                 });
 
-            modelBuilder.Entity("Factory.Models.EngineerLicense", b =>
+            modelBuilder.Entity("Factory.Models.EngineerMachine", b =>
                 {
-                    b.Property<int>("EngineerLicenseId")
+                    b.Property<int>("EngineerMachineId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
                     b.Property<int>("EngineerId")
                         .HasColumnType("int");
 
-                    b.Property<int>("LicenseId")
+                    b.Property<int>("MachineId")
                         .HasColumnType("int");
 
-                    b.HasKey("EngineerLicenseId");
+                    b.HasKey("EngineerMachineId");
 
                     b.HasIndex("EngineerId");
 
-                    b.HasIndex("LicenseId");
+                    b.HasIndex("MachineId");
 
-                    b.ToTable("EngineerLicenses");
-                });
-
-            modelBuilder.Entity("Factory.Models.License", b =>
-                {
-                    b.Property<int>("LicenseId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<string>("Title")
-                        .HasColumnType("longtext");
-
-                    b.HasKey("LicenseId");
-
-                    b.ToTable("Licenses");
+                    b.ToTable("EngineerMachines");
                 });
 
             modelBuilder.Entity("Factory.Models.Machine", b =>
@@ -82,59 +69,41 @@ namespace Factory.Migrations
                     b.Property<string>("Difficulty")
                         .HasColumnType("longtext");
 
-                    b.Property<int>("EngineerId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Name")
                         .HasColumnType("longtext");
 
                     b.HasKey("MachineId");
 
-                    b.HasIndex("EngineerId");
-
                     b.ToTable("Machines");
                 });
 
-            modelBuilder.Entity("Factory.Models.EngineerLicense", b =>
+            modelBuilder.Entity("Factory.Models.EngineerMachine", b =>
                 {
                     b.HasOne("Factory.Models.Engineer", "Engineer")
-                        .WithMany("JoinEntities")
+                        .WithMany("AssignedMachines")
                         .HasForeignKey("EngineerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Factory.Models.License", "License")
-                        .WithMany("JoinEntities")
-                        .HasForeignKey("LicenseId")
+                    b.HasOne("Factory.Models.Machine", "Machine")
+                        .WithMany("AssignedEngineers")
+                        .HasForeignKey("MachineId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Engineer");
 
-                    b.Navigation("License");
-                });
-
-            modelBuilder.Entity("Factory.Models.Machine", b =>
-                {
-                    b.HasOne("Factory.Models.Engineer", "Engineer")
-                        .WithMany("Machines")
-                        .HasForeignKey("EngineerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Engineer");
+                    b.Navigation("Machine");
                 });
 
             modelBuilder.Entity("Factory.Models.Engineer", b =>
                 {
-                    b.Navigation("JoinEntities");
-
-                    b.Navigation("Machines");
+                    b.Navigation("AssignedMachines");
                 });
 
-            modelBuilder.Entity("Factory.Models.License", b =>
+            modelBuilder.Entity("Factory.Models.Machine", b =>
                 {
-                    b.Navigation("JoinEntities");
+                    b.Navigation("AssignedEngineers");
                 });
 #pragma warning restore 612, 618
         }

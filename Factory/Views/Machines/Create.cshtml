@@ -18,10 +18,6 @@
           @Html.LabelFor(model => model.Difficulty, "Difficulty: ")
           @Html.DropDownListFor(model => model.Difficulty, ViewBag.Difficulties as List<SelectListItem>)
         </div>
-        <div>
-          @Html.LabelFor(model => model.Engineer, "Engineers assigned: ")
-          @Html.DropDownList("EngineerId")
-        </div>
       </div>
       <input type="submit" value="Register" />
     }
