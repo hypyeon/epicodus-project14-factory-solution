@@ -48,6 +48,8 @@ namespace Factory.Controllers
     {
       Engineer eng = _db.Engineers
         .Include(e => e.Machines)
+        .Include(e => e.JoinEntities)
+        .ThenInclude(join => join.License)
         .FirstOrDefault(e => e.EngineerId == id);
       return View(eng);
     }

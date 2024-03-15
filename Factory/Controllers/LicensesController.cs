@@ -20,5 +20,14 @@ namespace Factory.Controllers
     {
       return View(_db.Licenses.ToList());
     }
+
+    public ActionResult Details(int id)
+    {
+      License license = _db.Licenses
+        .Include(li => li.JoinEntities)
+        .ThenInclude(join => join.Engineer)
+        .FirstOrDefault(li => li.LicenseId == id);
+      return View(license);
+    }
   }
 }
