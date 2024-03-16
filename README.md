@@ -19,12 +19,12 @@ by Hayeong Pyeon
 - As the factory manager (owner), you are able to do the followings:
 > 1) To see a list of all engineers and a list of all machines. 
 > 2) To select an engineer, see their details, and a list of all machines they are licensed to repair. 
-> 3) To select a machine, see its details, and a list of all engineers licnesed to repair it. 
+> 3) To select a machine, see its details, and a list of all engineers licensed to repair it. 
 > 4) To add new engineers to the system when hired - even if no machines are installed yet. 
 > 5) To add new machines to the system when installed - even if no engineers are hired yet. 
 > 6) To *not* be able to create an engineer or a machine if a form being submitted has empty or invalid values. 
 > 7) To add or remove machines that have engineers who are licensed to repair. 
-> 8) To add or rmove engineers from machines they're licnesed to repair. 
+> 8) To add or remove engineers from machines they're licensed to repair. 
 > 9) To modify machine-engineer relationship. 
 > 10) To *not* be able to add a machine to an engineer if there is no machine. 
 > 11) To *not* be able to add an engineer to a machine if there is no engineer. 
@@ -47,7 +47,7 @@ appsettings.json
 ```
 {
   "ConnectionStrings": {
-    "DefaultConnection": "Server=localhost;Port=3306;database=hayeong_pyeon;uid=[YOUR-USERNAME];pwd=[YOUR-PASSWORD];"
+    "DefaultConnection": "Server=localhost;Port=3306;database=factory_mtom;uid=[YOUR-USERNAME];pwd=[YOUR-PASSWORD];"
   }
 }
 ```
@@ -64,7 +64,7 @@ dotnet add package Microsoft.EntityFrameworkCore.Design -v 6.0.0
 7. Refer to the following commands when updating, viewing, and deleting migrations. These commands should be made within the production directory. 
 - To update the database after making a change, run `dotnet ef database update` in the terminal. 
 - To remove the recent update, run `dotnet ef migrations remove` in the terminal. 
-- To remove a certain update, run `dotnet ef migrations list` in the terminal to view the history, then run `dotnet ef migrations <MigrationName>` replacing `<MigrationName>` with the actual name. 
+- To remove a certain update, run `dotnet ef migrations list` in the terminal to view the history, then run `dotnet ef migrations remove <MigrationName>` replacing `<MigrationName>` with the actual name. 
 8. To compile and run the application in development mode with a watcher, run `dotnet watch run` which will open the browser automatically - if not - open the browser and navigate to https://localhost:5001. 
 
 ## Known Bugs
