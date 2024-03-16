@@ -9,10 +9,10 @@ by Hayeong Pyeon
 5. [License](#license)
 
 ## Technologies Used
-*to be updated*
-- C#
-- ASP.NET
+- C#, .NET
+- ASP.NET Core MVC
 - MySQL (Community Server, Workbench)
+- Entity Framwork Core
 
 ## Description
 - This application is an independent project as a review of **Many-to-Many Relationships** chapter of **C#** course provided by Epicodus.
@@ -68,7 +68,14 @@ dotnet add package Microsoft.EntityFrameworkCore.Design -v 6.0.0
 8. To compile and run the application in development mode with a watcher, run `dotnet watch run` which will open the browser automatically - if not - open the browser and navigate to https://localhost:5001. 
 
 ## Known Bugs
-*currently under development as of March 13, 2024*
+There are currently 2 bugs.
+1. Assigning a new machine does not update machine list under engineer. (Same goes for assigning a new engineer to a machine)
+- Repro steps:
+1) Click on an engineer name to view details.
+2) Click **here** to assign new machines. 
+3) Select a machine from the dropdown list and click **Assign**. 
+4) The browser is redirected to the detail page with no machine info added.
+2. Not entering values for *required* inputs such as Name for Engineer or Machine when creating new items does not render error message as expected, but custom error page shows up with *InvalidOperationException* title. 
 
 ## License
 [MIT](/LICENSE.txt) | Copyright © 2024 Hayeong Pyeon
