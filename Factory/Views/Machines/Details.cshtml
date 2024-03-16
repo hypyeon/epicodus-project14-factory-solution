@@ -14,7 +14,7 @@
 
   @if (Model.AssignedEngineers.Count == 0)
   {
-    <p>No engineers assigned to this machine yet. Click @Html.ActionLink("here", "AddEngineer", new { id = Model.MachineId }) to assign new engineers licensed to repair @Html.DisplayFor(model => model.Name).</p>
+    <p>No engineers assigned yet. Click @Html.ActionLink("here", "AddEngineer", new { id = Model.MachineId }) to assign new engineers licensed to repair @Html.DisplayFor(model => model.Name).</p>
   } 
   else 
   {

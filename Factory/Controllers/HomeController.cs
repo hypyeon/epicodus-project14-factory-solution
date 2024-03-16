@@ -1,14 +1,28 @@
 using Microsoft.AspNetCore.Mvc;
+using Factory.Models;
+using System.Linq;
+using System.Collections.Generic;
 
 namespace Factory.Controllers
 {
   public class HomeController : Controller
   {
+    private readonly FactoryContext _db;
+
+    public HomeController(FactoryContext db)
+    {
+      _db = db;
+    }
+
     [HttpGet("/")]
     public ActionResult Index()
     {
-      //ViewBag.PageTitle = "Eau Clair's Hair Salon";
-      return View();
+      Engineer[] engineers = _db.Engineers.ToArray();
+      Machine[] machines = _db.Machines.ToArray();
+      Dictionary<string, object[]> model = new Dictionary<string, object[]> ();
+      model.Add("engineers", engineers);
+      model.Add("machines", machines);
+      return View(model);
     }
   }
 }

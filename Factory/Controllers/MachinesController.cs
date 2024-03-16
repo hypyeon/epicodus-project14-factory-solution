@@ -4,7 +4,6 @@ using Microsoft.EntityFrameworkCore;
 using Factory.Models;
 using System.Collections.Generic;
 using System.Linq;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace Factory.Controllers
 {

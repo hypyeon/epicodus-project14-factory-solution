@@ -4,9 +4,6 @@ using Factory.Models;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using System;
-using System.Threading.Tasks;
 
 namespace Factory.Controllers
 {
