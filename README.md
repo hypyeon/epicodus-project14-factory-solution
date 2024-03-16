@@ -17,18 +17,18 @@ by Hayeong Pyeon
 ## Description
 - This application is an independent project as a review of **Many-to-Many Relationships** chapter of **C#** course provided by Epicodus.
 - As the factory manager (owner), you are able to do the followings:
-> 1) To see a list of all engineers and a list of all machines. 
-> 2) To select an engineer, see their details, and a list of all machines they are licensed to repair. 
-> 3) To select a machine, see its details, and a list of all engineers licensed to repair it. 
-> 4) To add new engineers to the system when hired - even if no machines are installed yet. 
-> 5) To add new machines to the system when installed - even if no engineers are hired yet. 
-> 6) To *not* be able to create an engineer or a machine if a form being submitted has empty or invalid values. 
-> 7) To add or remove machines that have engineers who are licensed to repair. 
-> 8) To add or remove engineers from machines they're licensed to repair. 
-> 9) To modify machine-engineer relationship. 
-> 10) To *not* be able to add a machine to an engineer if there is no machine. 
-> 11) To *not* be able to add an engineer to a machine if there is no engineer. 
-> 12) To view a splash page listing all engineers and machines when accessing the application. 
+> [x] To see a list of all engineers and a list of all machines. 
+> [] To select an engineer, see their details, and a list of all machines they are licensed to repair. 
+> [] To select a machine, see its details, and a list of all engineers licensed to repair it. 
+> [x] To add new engineers to the system when hired - even if no machines are installed yet. 
+> [x] To add new machines to the system when installed - even if no engineers are hired yet. 
+> [] To *not* be able to create an engineer or a machine if a form being submitted has empty or invalid values. 
+> [] To add or remove machines that have engineers who are licensed to repair. 
+> [] To add or remove engineers from machines they're licensed to repair. 
+> [] To modify machine-engineer relationship. 
+> [x] To *not* be able to add a machine to an engineer if there is no machine. 
+> [x] To *not* be able to add an engineer to a machine if there is no engineer. 
+> [x] To view a splash page listing all engineers and machines when accessing the application. 
 
 ## Setup Instructions
 > [!IMPORTANT]
@@ -68,13 +68,13 @@ dotnet add package Microsoft.EntityFrameworkCore.Design -v 6.0.0
 8. To compile and run the application in development mode with a watcher, run `dotnet watch run` which will open the browser automatically - if not - open the browser and navigate to https://localhost:5001. 
 
 ## Known Bugs
-There are currently 2 bugs.
+There are currently 2 bugs. *(Last update made on March 15)*
 1. Assigning a new machine does not update machine list under engineer. (Same goes for assigning a new engineer to a machine)
 - Repro steps:
-1) Click on an engineer name to view details.
-2) Click **here** to assign new machines. 
-3) Select a machine from the dropdown list and click **Assign**. 
-4) The browser is redirected to the detail page with no machine info added.
+  a. Click on an engineer name to view details.
+  b. Click **here** to assign new machines. 
+  c. Select a machine from the dropdown list and click **Assign**. 
+  d. The browser is redirected to the detail page with no machine info added.
 2. Not entering values for *required* inputs such as Name for Engineer or Machine when creating new items does not render error message as expected, but custom error page shows up with *InvalidOperationException* title. 
 
 ## License
