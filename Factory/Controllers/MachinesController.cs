@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Factory.Models;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace Factory.Controllers
 {
@@ -116,6 +117,16 @@ namespace Factory.Controllers
         _db.SaveChanges();
       }
       return RedirectToAction("Details", new { id = mac.MachineId });
+    }
+
+    [HttpPost]
+    public ActionResult DeleteJoin(int id)
+    {
+      EngineerMachine enMac = _db.EngineerMachines
+        .FirstOrDefault(join => join.EngineerMachineId == id);
+      _db.EngineerMachines.Remove(enMac);
+      _db.SaveChanges();
+      return RedirectToAction("Index");
     }
   }
 }

@@ -23,6 +23,11 @@
     {
       <div>
         <p>@join.Machine.Name</p>
+        @using (Html.BeginForm("DeleteJoin", "Engineers"))
+        {
+          @Html.Hidden("id", @join.EngineerMachineId)
+          <input type="submit" value="Remove" />
+        }
       </div>
     }
   }

@@ -130,5 +130,15 @@ namespace Factory.Controllers
       }
       return RedirectToAction("Details", new { id = en.EngineerId });
     }
+
+    [HttpPost]
+    public ActionResult DeleteJoin(int id)
+    {
+      EngineerMachine enMac = _db.EngineerMachines
+        .FirstOrDefault(join => join.EngineerMachineId == id);
+      _db.EngineerMachines.Remove(enMac);
+      _db.SaveChanges();
+      return RedirectToAction("Index");
+    }
   }
 }
