@@ -19,14 +19,14 @@ by Hayeong Pyeon
 - As the factory manager (owner), you are able to do the followings:
 *These are project objectives. Only checked items are available for this update. Refer to [Known Bugs](#known-bugs) for the unchecked.*
 > - [x] To see a list of all engineers and a list of all machines. 
-> - [] To select an engineer, see their details, and a list of all machines they are licensed to repair. 
-> - [] To select a machine, see its details, and a list of all engineers licensed to repair it. 
+> - [ ] To select an engineer, see their details, and a list of all machines they are licensed to repair. 
+> - [ ] To select a machine, see its details, and a list of all engineers licensed to repair it. 
 > - [x] To add new engineers to the system when hired - even if no machines are installed yet. 
 > - [x] To add new machines to the system when installed - even if no engineers are hired yet. 
-> - [] To *not* be able to create an engineer or a machine if a form being submitted has empty or invalid values. 
-> - [] To add or remove machines that have engineers who are licensed to repair. 
-> - [] To add or remove engineers from machines they're licensed to repair. 
-> - [] To modify machine-engineer relationship. 
+> - [ ] To *not* be able to create an engineer or a machine if a form being submitted has empty or invalid values. 
+> - [ ] To add or remove machines that have engineers who are licensed to repair. 
+> - [ ] To add or remove engineers from machines they're licensed to repair. 
+> - [ ] To modify machine-engineer relationship. 
 > - [x] To *not* be able to add a machine to an engineer if there is no machine. 
 > - [x] To *not* be able to add an engineer to a machine if there is no engineer. 
 > - [x] To view a splash page listing all engineers and machines when accessing the application. 
