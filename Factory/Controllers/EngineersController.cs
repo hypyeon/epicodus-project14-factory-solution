@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using System;
+using System.Threading.Tasks;
 
 namespace Factory.Controllers
 {
@@ -33,7 +35,6 @@ namespace Factory.Controllers
         new SelectListItem { Value = "Engineering Lead", Text = "Engineering Lead" }
       };
       ViewBag.JobTitles = jobTitles;
-      ViewBag.MachineId = new SelectList(_db.Machines, "MachineId", "Name");
       return View();
     }
 
@@ -44,7 +45,8 @@ namespace Factory.Controllers
       {
         return View(en);
       }
-      else {
+      else 
+      {
         _db.Engineers.Add(en);
         _db.SaveChanges();
         return RedirectToAction("Details", new { id = en.EngineerId });
@@ -62,7 +64,8 @@ namespace Factory.Controllers
 
     public ActionResult Edit(int id)
     {
-      Engineer engineer = _db.Engineers.FirstOrDefault(en => en.EngineerId == id);
+      Engineer engineer = _db.Engineers
+        .FirstOrDefault(en => en.EngineerId == id);
       var jobTitles = new List<SelectListItem>
       {
         new SelectListItem { Value = "Intern", Text = "Intern" },
@@ -101,7 +104,8 @@ namespace Factory.Controllers
 
     public ActionResult AddMachine(int id)
     {
-      Engineer engineer = _db.Engineers.FirstOrDefault(en => en.EngineerId == id);
+      Engineer engineer = _db.Engineers
+        .FirstOrDefault(en => en.EngineerId == id);
       ViewBag.MachineId = new SelectList(_db.Machines, "MachineId", "Name");
       return View(engineer);
     }

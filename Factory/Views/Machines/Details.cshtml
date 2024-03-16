@@ -14,21 +14,23 @@
 
   @if (Model.AssignedEngineers.Count == 0)
   {
-    <p>No engineers assigned to this machine yet. </p>
-    <p>Click @Html.ActionLink("here", "AddEngineer") to assign new engineers licensed to repair @Html.DisplayFor(model => model.Name).</p>
+    <p>No engineers assigned to this machine yet. Click @Html.ActionLink("here", "AddEngineer", new { id = Model.MachineId }) to assign new engineers licensed to repair @Html.DisplayFor(model => model.Name).</p>
   } 
-  else {
+  else 
+  {
     <h4>Licensed engineers: </h4>
     @foreach(EngineerMachine join in Model.AssignedEngineers)
     {
-      <div>@Html.ActionLink($"{join.Engineer.Name}", "Details", "Engineers", new { id = join.Engineer.EngineerId })</div>
+      <div>
+        <p>@join.Engineer.Name</p>
+      </div>
     }
   }
   <div class="buttons">
     <p>@Html.ActionLink("Add new Engineers", "Create", "Engineers")</p>
-    <p>@Html.ActionLink("Edit Engineer or Machine", "Edit", new { id = Model.MachineId })</p>
-    <p>@Html.ActionLink("Unregister this Engineer", "Delete", new { id = Model.MachineId })</p>
-    <p>@Html.ActionLink("Back to Engineer List", "Index")</p>
+    <p>@Html.ActionLink("Change Information", "Edit", new { id = Model.MachineId })</p>
+    <p>@Html.ActionLink("Unregister this Machine", "Delete", new { id = Model.MachineId })</p>
+    <p>@Html.ActionLink("Back to Machine List", "Index")</p>
   </div>
 </div>
 

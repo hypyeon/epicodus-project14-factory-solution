@@ -92,7 +92,8 @@ namespace Factory.Controllers
 
     public ActionResult AddEngineer(int id)
     {
-      Machine machine = _db.Machines.FirstOrDefault(mac => mac.MachineId == id);
+      Machine machine = _db.Machines
+        .FirstOrDefault(mac => mac.MachineId == id);
       ViewBag.EngineerId = new SelectList(_db.Engineers, "EngineerId", "Name");
       return View(machine);
     }

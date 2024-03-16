@@ -10,11 +10,9 @@
   <div class="form">
     @using (Html.BeginForm())
     {
-      <div class="form-div">
-        @Html.HiddenFor(model => model.EngineerId)
-        @Html.Label("Select a Machine: ")
-        @Html.DropDownList("MachineId")
-      </div>
+      @Html.HiddenFor(model => model.EngineerId)
+      @Html.Label("Select a Machine: ")
+      @Html.DropDownList("MachineId")
       <input type="submit" value="Assign" />
     }
   </div>

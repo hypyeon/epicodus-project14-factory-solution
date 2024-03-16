@@ -14,19 +14,21 @@
 
   @if (Model.AssignedMachines.Count == 0)
   {
-    <p>No machines assigned yet. </p>
-    <p>Click @Html.ActionLink("here", "AddMachine", new { id = Model.EngineerId }) to assign new machines for @Html.DisplayFor(model => model.Name).</p>
+    <p>No machines assigned yet. Click @Html.ActionLink("here", "AddMachine", new { id = Model.EngineerId }) to assign new machines for @Html.DisplayFor(model => model.Name).</p>
   } 
-  else {
+  else 
+  {
     <h4>Machines assigned: </h4>
-    @foreach(EngineerMachine join in Model.AssignedMachines)
+    @foreach (EngineerMachine join in Model.AssignedMachines)
     {
-      <div>@Html.ActionLink($"{join.Machine.Name}", "Details", "Machines", new { id = join.Machine.MachineId })</div>
+      <div>
+        <p>@join.Machine.Name</p>
+      </div>
     }
   }
   <div class="buttons">
     <p>@Html.ActionLink("Add new Machines", "Create", "Machines")</p>
-    <p>@Html.ActionLink("Edit Engineer or Machine", "Edit", new { id = Model.EngineerId })</p>
+    <p>@Html.ActionLink("Change Information", "Edit", new { id = Model.EngineerId })</p>
     <p>@Html.ActionLink("Unregister this Engineer", "Delete", new { id = Model.EngineerId })</p>
     <p>@Html.ActionLink("Back to Engineer List", "Index")</p>
   </div>

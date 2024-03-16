@@ -12,7 +12,8 @@
     <h3>No engineer registered in the system. </h3>
     <p>Click @Html.ActionLink("here", "Create") to add new engineer.</p>
   } 
-  else {
+  else 
+  {
     <div id="stylist-list">
       @foreach(Engineer eng in Model)
       {

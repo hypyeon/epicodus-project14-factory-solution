@@ -3,10 +3,25 @@
 }
 
 @model Factory.Models.Machine
+@using Factory.Models
 
 <div>
   <h2>Assign a licensed Engineer</h2>
-
+  <p>Currently assigned to: </p>
+  @if (Model.AssignedEngineers.Count == 0)
+  {
+    <p>None</p>
+  }
+  else
+  {
+    <ul>
+      @foreach (EngineerMachine join in Model.AssignedEngineers)
+      {
+        <li>@join.Engineer.Name</li>
+      }
+    </ul>
+  }
+  <p>Assign a new engineer for @Html.DisplayFor(model => model.Name).</p>
   <div class="form">
     @using (Html.BeginForm())
     {
